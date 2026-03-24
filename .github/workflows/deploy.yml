@@ -1,0 +1,41 @@
+name: Deploy to AKS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'app/**'
+      - 'k8s/**'
+
+env:
+  REGISTRY: acrjul24.azurecr.io
+  IMAGE_NAME: fastapi-app
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to ACR
+        run: |
+          echo "${{ secrets.AZURE_CR_PASSWORD }}" | docker login ${{ env.REGISTRY }} -u "${{ secrets.AZURE_CR_USERNAME }}" --password-stdin
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} app/
+          docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}:latest app/
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+
+      - name: Set up kubectl
+        uses: azure/k8s-set-context@v4
+        with:
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+
+      - name: Update Kubernetes deployment image
+        run: |
+          kubectl set image deployment/fastapi fastapi=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} -n fastapi-app
+          kubectl rollout status deployment/fastapi -n fastapi-app --timeout=300s
