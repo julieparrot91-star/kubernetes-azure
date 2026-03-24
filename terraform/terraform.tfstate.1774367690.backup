@@ -1,0 +1,330 @@
+{
+  "version": 4,
+  "terraform_version": "1.11.2",
+  "serial": 20,
+  "lineage": "55abf92f-7e5c-6d7c-bd89-c8cdb1c02f15",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "azurerm_resource_group",
+      "name": "aks",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/e55fd568-f62a-47d7-8fc5-1c3b6818f869/resourceGroups/aks_rg",
+            "location": "westeurope",
+            "managed_by": "",
+            "name": "aks_rg",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo1NDAwMDAwMDAwMDAwLCJkZWxldGUiOjU0MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjo1NDAwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "module": "module.acr",
+      "mode": "managed",
+      "type": "azurerm_container_registry",
+      "name": "acr",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 2,
+          "attributes": {
+            "admin_enabled": true,
+            "admin_password": "GELvD3lQ9FBWGylZXpDemO3M0NKfYBgzNzIJ5T6DW8QYXPBJ6ERLJQQJ99CCAC5RqLJEqg7NAAACAZCRD8pf",
+            "admin_username": "acrjul24",
+            "anonymous_pull_enabled": false,
+            "data_endpoint_enabled": false,
+            "encryption": [
+              {
+                "enabled": false,
+                "identity_client_id": "",
+                "key_vault_key_id": ""
+              }
+            ],
+            "export_policy_enabled": true,
+            "georeplications": [],
+            "id": "/subscriptions/e55fd568-f62a-47d7-8fc5-1c3b6818f869/resourceGroups/aks_rg/providers/Microsoft.ContainerRegistry/registries/acrjul24",
+            "identity": [],
+            "location": "westeurope",
+            "login_server": "acrjul24.azurecr.io",
+            "name": "acrjul24",
+            "network_rule_bypass_option": "AzureServices",
+            "network_rule_set": [],
+            "public_network_access_enabled": true,
+            "quarantine_policy_enabled": false,
+            "resource_group_name": "aks_rg",
+            "retention_policy": [
+              {
+                "days": 7,
+                "enabled": false
+              }
+            ],
+            "sku": "Basic",
+            "tags": {},
+            "timeouts": null,
+            "trust_policy": [
+              {
+                "enabled": false
+              }
+            ],
+            "zone_redundancy_enabled": false
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "admin_password"
+              }
+            ]
+          ],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIyIn0="
+        }
+      ]
+    },
+    {
+      "module": "module.network",
+      "mode": "managed",
+      "type": "azurerm_private_endpoint",
+      "name": "psql_endpoint",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "custom_dns_configs": [
+              {
+                "fqdn": "psql-jul24.postgres.database.azure.com",
+                "ip_addresses": [
+                  "10.0.2.4"
+                ]
+              }
+            ],
+            "custom_network_interface_name": "",
+            "id": "/subscriptions/e55fd568-f62a-47d7-8fc5-1c3b6818f869/resourceGroups/aks_rg/providers/Microsoft.Network/privateEndpoints/PrivateEndpointPSQL",
+            "ip_configuration": [],
+            "location": "westeurope",
+            "name": "PrivateEndpointPSQL",
+            "network_interface": [
+              {
+                "id": "/subscriptions/e55fd568-f62a-47d7-8fc5-1c3b6818f869/resourceGroups/aks_rg/providers/Microsoft.Network/networkInterfaces/PrivateEndpointPSQL.nic.d9f1e052-8ce2-490d-b430-4625ad73933d",
+                "name": "PrivateEndpointPSQL.nic.d9f1e052-8ce2-490d-b430-4625ad73933d"
+              }
+            ],
+            "private_dns_zone_configs": [],
+            "private_dns_zone_group": [],
+            "private_service_connection": [
+              {
+                "is_manual_connection": false,
+                "name": "psql-privateserviceconnection",
+                "private_connection_resource_alias": "",
+                "private_connection_resource_id": "/subscriptions/e55fd568-f62a-47d7-8fc5-1c3b6818f869/resourceGroups/aks_rg/providers/Microsoft.DBforPostgreSQL/flexibleServers/psql-jul24",
+                "private_ip_address": "10.0.2.4",
+                "request_message": "",
+                "subresource_names": [
+                  "postgresqlServer"
+                ]
+              }
+            ],
+            "resource_group_name": "aks_rg",
+            "subnet_id": "/subscriptions/e55fd568-f62a-47d7-8fc5-1c3b6818f869/resourceGroups/aks_rg/providers/Microsoft.Network/virtualNetworks/aks-vnet/subnets/PsqlSubnet",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjozNjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.network.azurerm_subnet.sub_psql",
+            "module.network.azurerm_virtual_network.aks",
+            "module.postgresql.azurerm_postgresql_flexible_server.postgresql"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.network",
+      "mode": "managed",
+      "type": "azurerm_subnet",
+      "name": "sub_aks",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_prefixes": [
+              "10.0.1.0/24"
+            ],
+            "default_outbound_access_enabled": true,
+            "delegation": [],
+            "enforce_private_link_endpoint_network_policies": false,
+            "enforce_private_link_service_network_policies": false,
+            "id": "/subscriptions/e55fd568-f62a-47d7-8fc5-1c3b6818f869/resourceGroups/aks_rg/providers/Microsoft.Network/virtualNetworks/aks-vnet/subnets/AksSubnet",
+            "name": "AksSubnet",
+            "private_endpoint_network_policies": "Enabled",
+            "private_endpoint_network_policies_enabled": true,
+            "private_link_service_network_policies_enabled": true,
+            "resource_group_name": "aks_rg",
+            "service_endpoint_policy_ids": [],
+            "service_endpoints": [],
+            "timeouts": null,
+            "virtual_network_name": "aks-vnet"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.network.azurerm_virtual_network.aks"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.network",
+      "mode": "managed",
+      "type": "azurerm_subnet",
+      "name": "sub_psql",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_prefixes": [
+              "10.0.2.0/24"
+            ],
+            "default_outbound_access_enabled": true,
+            "delegation": [],
+            "enforce_private_link_endpoint_network_policies": false,
+            "enforce_private_link_service_network_policies": false,
+            "id": "/subscriptions/e55fd568-f62a-47d7-8fc5-1c3b6818f869/resourceGroups/aks_rg/providers/Microsoft.Network/virtualNetworks/aks-vnet/subnets/PsqlSubnet",
+            "name": "PsqlSubnet",
+            "private_endpoint_network_policies": "Enabled",
+            "private_endpoint_network_policies_enabled": true,
+            "private_link_service_network_policies_enabled": true,
+            "resource_group_name": "aks_rg",
+            "service_endpoint_policy_ids": [],
+            "service_endpoints": [
+              "Microsoft.Sql"
+            ],
+            "timeouts": null,
+            "virtual_network_name": "aks-vnet"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.network.azurerm_virtual_network.aks"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.network",
+      "mode": "managed",
+      "type": "azurerm_virtual_network",
+      "name": "aks",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_space": [
+              "10.0.0.0/16"
+            ],
+            "bgp_community": "",
+            "ddos_protection_plan": [],
+            "dns_servers": [],
+            "edge_zone": "",
+            "encryption": [],
+            "flow_timeout_in_minutes": 0,
+            "guid": "4c5f37db-5181-4a93-8c2a-7c2e1494fa26",
+            "id": "/subscriptions/e55fd568-f62a-47d7-8fc5-1c3b6818f869/resourceGroups/aks_rg/providers/Microsoft.Network/virtualNetworks/aks-vnet",
+            "location": "westeurope",
+            "name": "aks-vnet",
+            "resource_group_name": "aks_rg",
+            "subnet": [
+              {
+                "address_prefix": "10.0.1.0/24",
+                "id": "/subscriptions/e55fd568-f62a-47d7-8fc5-1c3b6818f869/resourceGroups/aks_rg/providers/Microsoft.Network/virtualNetworks/aks-vnet/subnets/AksSubnet",
+                "name": "AksSubnet",
+                "security_group": ""
+              },
+              {
+                "address_prefix": "10.0.2.0/24",
+                "id": "/subscriptions/e55fd568-f62a-47d7-8fc5-1c3b6818f869/resourceGroups/aks_rg/providers/Microsoft.Network/virtualNetworks/aks-vnet/subnets/PsqlSubnet",
+                "name": "PsqlSubnet",
+                "security_group": ""
+              }
+            ],
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "module": "module.postgresql",
+      "mode": "managed",
+      "type": "azurerm_postgresql_flexible_server",
+      "name": "postgresql",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "administrator_login": "psqladmin",
+            "administrator_password": "H@Sh1CoR3!",
+            "authentication": [
+              {
+                "active_directory_auth_enabled": false,
+                "password_auth_enabled": true,
+                "tenant_id": ""
+              }
+            ],
+            "auto_grow_enabled": true,
+            "backup_retention_days": 7,
+            "create_mode": null,
+            "customer_managed_key": [],
+            "delegated_subnet_id": "",
+            "fqdn": "psql-jul24.postgres.database.azure.com",
+            "geo_redundant_backup_enabled": false,
+            "high_availability": [],
+            "id": "/subscriptions/e55fd568-f62a-47d7-8fc5-1c3b6818f869/resourceGroups/aks_rg/providers/Microsoft.DBforPostgreSQL/flexibleServers/psql-jul24",
+            "identity": [],
+            "location": "westeurope",
+            "maintenance_window": [],
+            "name": "psql-jul24",
+            "point_in_time_restore_time_in_utc": null,
+            "private_dns_zone_id": "",
+            "public_network_access_enabled": true,
+            "replication_role": "",
+            "resource_group_name": "aks_rg",
+            "sku_name": "B_Standard_B1ms",
+            "source_server_id": null,
+            "storage_mb": 32768,
+            "storage_tier": "P4",
+            "tags": {},
+            "timeouts": null,
+            "version": "15",
+            "zone": ""
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "administrator_password"
+              }
+            ]
+          ],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjozNjAwMDAwMDAwMDAwfX0="
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}

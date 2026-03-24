@@ -12,3 +12,8 @@ variable "aks_subnet_id" {
 	description = "Aks subnet ID"
 	type = string
 }
+
+variable "acr_id" {
+	description = "ACR ID for pull access"
+	type        = string
+}
