@@ -65,28 +65,7 @@ az aks get-credentials -g rg-aks-jul24 -n aks-jul24
 kubectl apply -f k8s/
 ```
 
-## 🔧 Commandes Utiles
-
-```bash
-# Vérifier les pods
-kubectl get pods -n fastapi-ns
-
-# Logs
-kubectl logs -n fastapi-ns -l app=fastapi
-
-# Accéder au cluster
-kubectl exec -it <pod-name> -n fastapi-ns -- /bin/bash
-```
-
-## 💰 Coûts Azure (estimation)
-
-- **AKS** : ~50-70€/mois (2 nodes B1s)
-- **PostgreSQL Flexible** : ~30€/mois (Basic, 2 vCPU)
-- **ACR** : ~5€/mois (Basic)
-- **VNET/PE** : Gratuit
-
-**Total estimé : ~85-105€/mois**
-
 ---
 
 **Repo** : https://github.com/julieparrot91-star/kubernetes-azure
+**Site Web** : https://julien-parrot.fr
