@@ -68,4 +68,5 @@ kubectl apply -f k8s/
 ---
 
 **Repo** : https://github.com/julieparrot91-star/kubernetes-azure
-**Site Web** : https://julien-parrot.fr
+
+**Portfolio** : https://julien-parrot.fr
