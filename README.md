@@ -4,23 +4,28 @@ Projet complet pour déployer une application FastAPI sur Azure Kubernetes Servi
 
 ## 🏗️ Architecture
 
-```
-┌─────────────────────────────────────┐
-│         Azure Cloud                 │
-│  ┌─────────────────────────────┐   │
-│  │  Virtual Network (10.0.0.0/16) │
-│  │  ├── AKS Cluster (10.1.0.0/16) │
-│  │  ├── PostgreSQL Flexible      │
-│  │  │   (Private Endpoint)        │
-│  │  └── ACR (Container Registry)  │
-│  └─────────────────────────────┘   │
-└─────────────────────────────────────┘
-            ▲
-            │ GitHub Actions
-            │
-┌─────────────────────────────────────┐
-│   GitHub Repository                 │
-└─────────────────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph Azure["Azure Cloud"]
+        direction TB
+        VNET["VNET (10.0.0.0/16)"]
+        
+        subgraph Subnets
+            AKS[("AKS Cluster<br/>10.1.0.0/16")]
+            POSTGRES[("PostgreSQL<br/>Flexible")]
+            ACR[("ACR")]
+        end
+        
+        VNET --- Subnets
+    end
+    
+    GH["GitHub<br/>Repository"] -->|"GitHub Actions"| Azure
+    
+    style Azure fill:#0078D4,stroke:#fff,color:#fff
+    style GH fill:#24292F,stroke:#fff,color:#fff
+    style AKS fill:#326CE5,stroke:#fff,color:#fff
+    style POSTGRES fill:#FF8C00,stroke:#fff,color:#fff
+    style ACR fill:#0096FF,stroke:#fff,color:#fff
 ```
 
 ## 📁 Structure
