@@ -1,6 +1,6 @@
 # 🚀 Pipeline CI/CD sur Azure AKS
 
-Projet complet pour déployer une application FastAPI sur Azure Kubernetes Service (AKS) avec infrastructure Terraform et CI/CD GitHub Actions.
+Projet personnel de formation visant à maîtriser le déploiement cloud sur Azure. Cette pipeline automatise le build, le test et le déploiement d'une application FastAPI sur un cluster AKS, avec une infrastructure provisionnée en Terraform.
 
 ## 🏗️ Architecture
 
