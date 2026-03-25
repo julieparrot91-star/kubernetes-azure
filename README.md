@@ -1,4 +1,4 @@
-# 🚀 Pipeline CI/CD sur Azure AKS
+# 🚀 Projet Azure Kubernetes
 
 Projet personnel de formation visant à maîtriser le déploiement cloud sur Azure. Cette pipeline automatise le build, le test et le déploiement d'une application FastAPI sur un cluster AKS, avec une infrastructure provisionnée en Terraform.
 
